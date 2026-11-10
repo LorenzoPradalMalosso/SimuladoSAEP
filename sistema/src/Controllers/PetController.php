@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use App\Controller\Controller;
+use App\Controllers\Controller;
 use App\Models\Pet;
 use App\Models\Tutor;
 

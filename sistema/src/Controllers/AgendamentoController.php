@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use App\Controller\Controller;
+use App\Controllers\Controller;
 use App\Models\Agendamento;
 use App\Models\Tutor;
 use App\Models\Pet;
@@ -55,7 +55,7 @@ final class AgendamentoController extends Controller {
         if (!$agendamento) {
             $this->redirecionar('/agendamentos');
         }
-        $this->renderizar('agendamentos/editar_data', [
+        $this->renderizar('agendamentos/editar-data', [
             'titulo'      => 'Atualizar Data do Agendamento #' . $id,
             'agendamento' => $agendamento,
             'csrfToken'   => $this->obterCsrfToken()

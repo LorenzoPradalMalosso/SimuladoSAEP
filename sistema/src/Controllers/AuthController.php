@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use App\Controller\Controller;
+use App\Controllers\Controller;
 use App\Models\Usuario;
 
 /**
@@ -22,6 +22,7 @@ final class AuthController extends Controller {
     //valido o login
     public function login(): void {
         if (!$this->validarCsrfToken($_POST['csrf_token'] ?? null)) {
+            $csrfToken = $this->obterCsrfToken();
             $this->renderizar('auth/login', ['titulo' => 'Login', 'erro' => 'Token CSRF inválido ou expirado.']);
             return;
         }

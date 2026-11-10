@@ -16,7 +16,7 @@ final class Agendamento {
     }
 
     public static function listarOrdenadoPorAno(): array {
-        $sql = "SELECT a.id, a.data_agendamento, a.hora_agendamento, a.servico, a.status, a.observacoes,
+        $sql = "SELECT a.id, a.data_agendamento, a.hora_agendamento, a.servico, a.status, a.observacao,
                        EXTRACT(YEAR FROM a.data_agendamento) AS ano_agendamento,
                        t.id AS tutor_id, t.nome AS tutor_nome, t.telefone AS tutor_telefone, t.email AS tutor_email,
                        p.id AS pet_id, p.nome AS pet_nome, p.especie AS pet_especie, p.raca AS pet_raca,

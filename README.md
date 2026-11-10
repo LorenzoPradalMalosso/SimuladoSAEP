@@ -1,6 +1,6 @@
-# Resolução do Desafio SAEP: Sistema de Gestão para Clínica Veterinária
+﻿# ResoluÃ§Ã£o do Desafio SAEP: Sistema de GestÃ£o para ClÃ­nica VeterinÃ¡ria
 
-**Avaliação Prática de Desempenho dos Estudantes - SAEP**
+**AvaliaÃ§Ã£o PrÃ¡tica de Desempenho dos Estudantes - SAEP**
 
 **Tecnologias**: PHP 8.5, PostgreSQL, PDO (Prepared Statements)
 
@@ -8,41 +8,41 @@
 
 ---
 
-## Apresentação do Projeto e Visão Geral
+## ApresentaÃ§Ã£o do Projeto e VisÃ£o Geral
 
-Este documento apresenta a resolução integral para o **Sistema de Gestão de Clínica Veterinária** - SGCV
+Este documento apresenta a resoluÃ§Ã£o integral para o **Sistema de GestÃ£o de ClÃ­nica VeterinÃ¡ria** - SGCV
 
-- Segurança LGPD
-- Sessão com Tempo de Expiração
-- Código Limpo e Princípio SOLID
+- SeguranÃ§a LGPD
+- SessÃ£o com Tempo de ExpiraÃ§Ã£o
+- CÃ³digo Limpo e PrincÃ­pio SOLID
 - Uso de Credenciais
-- Prevenção de Vulnerabilidade (XSS, SQL Injection, CSRF)
+- PrevenÃ§Ã£o de Vulnerabilidade (XSS, SQL Injection, CSRF)
 
 ## Entregas
 
-### Identificação do Projeto
-- **Nome do Sistema**: SisVet - Sistema de Gestão de Clínica Veterinária
-- **Público-Alvo**: Veterinários, Recepcionista e Gestores da Clínica
-- **Problema**: Eliminação dos controles manuais, duplicidade de registro, perda de agendamentos e risco de vazamento de dados(LGPD)
+### IdentificaÃ§Ã£o do Projeto
+- **Nome do Sistema**: SisVet - Sistema de GestÃ£o de ClÃ­nica VeterinÃ¡ria
+- **PÃºblico-Alvo**: VeterinÃ¡rios, Recepcionista e Gestores da ClÃ­nica
+- **Problema**: EliminaÃ§Ã£o dos controles manuais, duplicidade de registro, perda de agendamentos e risco de vazamento de dados(LGPD)
 
 ### Requisitos Funcionais (RF)
 
-- **RF-01**: Autenticação do Usuário com Sessão e Expiração => O sistema deve autenticar o usuário com e-mail e senha (hash de criptografia). Exibir alerta em caso de Erro. Sessão deve expirar automaticamente após 15 minutos de inatividade.
-- **RF-02**: Logout => Encerramento de sessão, destruindo os dados do usuário (cookies).
-- **RF-03**: Painel Principal (Dashboard) => Tela inicial após o login, deve exibir o nome do usuário logado.
-- **RF-04**: Cadastro de Tutores (LGPD) => Cadastrar informações dos tutores criptografando dados sensíveis (CPF).
+- **RF-01**: AutenticaÃ§Ã£o do UsuÃ¡rio com SessÃ£o e ExpiraÃ§Ã£o => O sistema deve autenticar o usuÃ¡rio com e-mail e senha (hash de criptografia). Exibir alerta em caso de Erro. SessÃ£o deve expirar automaticamente apÃ³s 15 minutos de inatividade.
+- **RF-02**: Logout => Encerramento de sessÃ£o, destruindo os dados do usuÃ¡rio (cookies).
+- **RF-03**: Painel Principal (Dashboard) => Tela inicial apÃ³s o login, deve exibir o nome do usuÃ¡rio logado.
+- **RF-04**: Cadastro de Tutores (LGPD) => Cadastrar informaÃ§Ãµes dos tutores criptografando dados sensÃ­veis (CPF).
 - **RF-05**: Busca e Listagem de Tutores => Campo de pesquisa por termo e listagem dos resultados.
-- **RF-06**: Edição dos Tutores => Permitir a alteração dos dados dos Tutores.
-- **RF-07**: Cadastro dos Pets com Vínculo em Tutor => Cadastro de Novo pet associado a um tutor.
+- **RF-06**: EdiÃ§Ã£o dos Tutores => Permitir a alteraÃ§Ã£o dos dados dos Tutores.
+- **RF-07**: Cadastro dos Pets com VÃ­nculo em Tutor => Cadastro de Novo pet associado a um tutor.
 - **RF-08**: Listagem dos Pets => Exibir a lista de pets cadastrados.
 - **RF-09**: Agendamento e Listagem de Agendamento => O sistema deve permitir cadastrar um agendamento e listar todos os agendamentos (ordenados por data).
-- **RF-10**: Atualização de Agendamento => Permitir alterar informações do agendamento
+- **RF-10**: AtualizaÃ§Ã£o de Agendamento => Permitir alterar informaÃ§Ãµes do agendamento
 
-### Requisitos Não Funcionais (RNF)
+### Requisitos NÃ£o Funcionais (RNF)
 
 - RNF-01: Arquitetura MVC
 - RNF-02: Mapeamento via PSR-04
-- RNF-03: Proteção e Criptografia
+- RNF-03: ProteÃ§Ã£o e Criptografia
 - RNF-04: Armazenamento em Banco de Dados Relacional
 
 ### Diagrama de Entidades Relacionais (DER)
@@ -50,7 +50,7 @@ Este documento apresenta a resolução integral para o **Sistema de Gestão de C
 ```mermaid
 
 erDiagram
-    title "DER - Sistema de Gestão de Clínica Veterinária"
+    title "DER - Sistema de GestÃ£o de ClÃ­nica VeterinÃ¡ria"
 
     usuarios {
         int id PK
@@ -98,12 +98,33 @@ erDiagram
     pets ||--o{ agendamentos : "paciente (1:N)"
 ```
 
-## Banco de Dados - Script de Criação e População
+## Banco de Dados - Script de CriaÃ§Ã£o e PopulaÃ§Ã£o
 
-Criação do arquivo schema.sql
+CriaÃ§Ã£o do arquivo schema.sql
 
-## Construção da Aplicação (`sistema/`)
+## ConstruÃ§Ã£o da AplicaÃ§Ã£o (`sistema/`)
 
 ### Composer.json
 
-Configurações do AutoLoad - PSR4
+ConfiguraÃ§Ãµes do AutoLoad - PSR4
+## Como executar
+
+1. Instale PHP 8.2+ com as extensões `pdo_pgsql` e `openssl`, Composer e PostgreSQL.
+2. Execute `composer install` dentro da pasta `sistema/` para gerar o autoload.
+3. Crie o banco e as tabelas uma única vez, na raiz do projeto: `createdb -U postgres saep_db` e depois `psql -U postgres -d saep_db -f schema.sql`.
+4. Confira host, porta, banco, usuário e senha em `sistema/config/database.ini`.
+5. Na raiz do projeto, inicie o servidor:
+
+   ```sh
+   php -S 127.0.0.1:8000 -t sistema/public sistema/public/router.php
+   ```
+
+6. Acesse `http://127.0.0.1:8000/login` e entre com `camila.vet@sisvet.com` e senha `123456`.
+
+Se o banco já foi criado com a versão antiga do `schema.sql`, corrija os hashes de senha provisórios no PostgreSQL:
+
+```sql
+UPDATE usuarios
+SET senha_hash = '$2y$12$vIkXeCv8cOXjJ5QFpbRSxODd27KOZIYEad6xXhBVHVAd8HJLxS21e'
+WHERE senha_hash = 'SUBSTITUA_PELO_HASH_ARGON2ID_GERADO_EM_PHP';
+```

@@ -3,7 +3,7 @@
 -- ================================================
 
 -- 1. Criação da Banco de Dados
-CREATE DATABASE saep_db;
+-- Execute este arquivo conectado ao banco saep_db.
 
 -- 2. Criação da Tabela de Usuários
 CREATE TABLE IF NOT EXISTS usuarios (
@@ -56,12 +56,11 @@ CREATE TABLE IF NOT EXISTS agendamentos (
 -- =============================================================================
 
 -- Usuários: Senha padrão para todos: '123456'
--- Gere o hash Argon2id em PHP com: password_hash('123456', PASSWORD_ARGON2ID)
--- Substitua o marcador abaixo pelo hash retornado antes de executar esta carga.
+-- Senha de demonstracao para os usuarios abaixo: 123456 (hash bcrypt).
 INSERT INTO usuarios (nome, email, senha_hash, perfil) VALUES
-('Dra. Camila Alencar', 'camila.vet@sisvet.com', 'SUBSTITUA_PELO_HASH_ARGON2ID_GERADO_EM_PHP', 'veterinario'),
-('Lucas Fernandes', 'lucas.recepcao@sisvet.com', 'SUBSTITUA_PELO_HASH_ARGON2ID_GERADO_EM_PHP', 'recepcionista'),
-('Mariana Rocha', 'gestao@sisvet.com', 'SUBSTITUA_PELO_HASH_ARGON2ID_GERADO_EM_PHP', 'admin');
+('Dra. Camila Alencar', 'camila.vet@sisvet.com', '$2y$12$vIkXeCv8cOXjJ5QFpbRSxODd27KOZIYEad6xXhBVHVAd8HJLxS21e', 'veterinario'),
+('Lucas Fernandes', 'lucas.recepcao@sisvet.com', '$2y$12$vIkXeCv8cOXjJ5QFpbRSxODd27KOZIYEad6xXhBVHVAd8HJLxS21e', 'recepcionista'),
+('Mariana Rocha', 'gestao@sisvet.com', '$2y$12$vIkXeCv8cOXjJ5QFpbRSxODd27KOZIYEad6xXhBVHVAd8HJLxS21e', 'admin');
 
 
 -- Tutores: CPFs armazenados criptografados em Base64 (OpenSSL AES-256-CBC)
@@ -70,9 +69,9 @@ INSERT INTO usuarios (nome, email, senha_hash, perfil) VALUES
 -- 2. '555.666.777-88' -> 'VmV0Q2FyZTI='
 -- 3. '999.888.777-66' -> 'VmV0Q2FyZTM='
 INSERT INTO tutores (id, nome, cpf_criptografado, telefone, email) VALUES
-(1, 'Carlos Eduardo Silva', 'u6P8bE2VdG8rS1k9xL4q+w==', '(11) 98765-4321', 'carlos.silva@email.com'),
-(2, 'Beatriz Souza Martins', 'z8K9jF3WdH9sT2l0yM5r+x==', '(11) 97654-3210', 'beatriz.martins@email.com'),
-(3, 'Fernando Henrique Lima', 'w7L0kG4XeI0tU3m1zN6s+y==', '(19) 99123-4567', 'fernando.lima@email.com');
+(1, 'Carlos Eduardo Silva', 'DO4MNjpa36yzQoBfshuHSU94ekhyV3ltcjJaeVNmT2ZTOWFBMWc9PQ==', '(11) 98765-4321', 'carlos.silva@email.com'),
+(2, 'Beatriz Souza Martins', '5imS5ExyZKDDK+aPyHJeIE5vZ2ZSd2o3V0pscS9jZFNRSWJnU1E9PQ==', '(11) 97654-3210', 'beatriz.martins@email.com'),
+(3, 'Fernando Henrique Lima', '+mMnLn7CGBtrm4rZoK9Ip05zck5PakFIWDRrVjg1T1U0azQ1Nmc9PQ==', '(19) 99123-4567', 'fernando.lima@email.com');
 
 
 -- Pets: Cada pet obrigatoriamente associado ao seu tutor

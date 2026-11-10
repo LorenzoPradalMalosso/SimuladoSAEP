@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Core\Guards;
+namespace App\Core;
 
 /**
  * Guard para protecao de rotas autenticadas e verificacao de expiracao de sessao.
@@ -26,8 +26,15 @@ final class AuthGuard {
     }
 
     private static function sessaoExpirada(): bool {
-        $cfg = parse_ini_file(dirname(__DIR__, 3) . '/config/database.ini', true);
-        $limite = (int)($cfg['security']['session_timeout'] ?? 900);
+        $arquivoConfig = dirname(__DIR__, 2) . '/config/database.ini';
+        if (!is_file($arquivoConfig)) {
+            return false;
+        }
+
+        $cfg = parse_ini_file($arquivoConfig, true);
+        $limite = isset($cfg['security']['session_timeout'])
+            ? (int)$cfg['security']['session_timeout']
+            : 900;
         $ultimoAcesso = $_SESSION['ultimo_acesso'] ?? time();
         return (time() - $ultimoAcesso) > $limite;
     }
